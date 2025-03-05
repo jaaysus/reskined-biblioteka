@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,7 +11,7 @@
             <ul>
                 <li><a href="{{ route('emprunts.index') }}">Emprunts</a></li>
                 <li><a href="{{ route('livres.index') }}">Livres</a></li>
-                <!-- Add more links as needed -->
+                <li><a href="{{ route('auteurs.index') }}">Auteurs</a></li> <!-- Added Auteurs link -->
             </ul>
         </nav>
     </header>
