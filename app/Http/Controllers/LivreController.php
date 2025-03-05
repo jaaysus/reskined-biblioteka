@@ -54,7 +54,7 @@ class LivreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Livre $livre)
     {
         $auteurs = Auteur::all();
         return view('livres.edit', compact('livre', 'auteurs'));

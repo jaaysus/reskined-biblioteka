@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Livre extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom', 'prenom'];
+    protected $fillable = ['titre', 'annee_publication', 'nombre_pages', 'auteur_id']; 
 
-    public function livres()
+    // Define the relationship with the Auteur model
+    public function auteur()
     {
-        return $this->hasMany(Livre::class);
+        return $this->belongsTo(Auteur::class);
     }
 }
