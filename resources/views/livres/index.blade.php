@@ -4,9 +4,9 @@
     <style>
         /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Georgia', serif;
+            background-color: #f5f5dc; /* Parchment-like background */
+            color: #3e2723; /* Dark brown for text */
             line-height: 1.6;
         }
 
@@ -14,17 +14,30 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
+            background-color: #fffaf0; /* Light, creamy background */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
             text-align: center;
-            color: #2c3e50;
+            color: #8b7355; /* Warm, earthy brown */
             margin-bottom: 30px;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Button Styles */
@@ -35,34 +48,40 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background-color: #3498db;
+            background-color: #8b7355; /* Warm, earthy brown */
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: #2980b9;
+            background-color: #6d4c41; /* Darker brown */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .btn-warning {
-            background-color: #f39c12;
+            background-color: #f39c12; /* Orange */
             color: white;
         }
 
         .btn-warning:hover {
-            background-color: #e67e22;
+            background-color: #e67e22; /* Darker orange */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .btn-danger {
-            background-color: #e74c3c;
+            background-color: #e74c3c; /* Red */
             color: white;
         }
 
         .btn-danger:hover {
-            background-color: #c0392b;
+            background-color: #c0392b; /* Darker red */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Table Styles */
@@ -70,6 +89,10 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .table th, .table td {
@@ -79,7 +102,7 @@
         }
 
         .table th {
-            background-color: #2c3e50;
+            background-color: #8b7355; /* Warm, earthy brown */
             color: white;
             font-weight: 600;
         }
@@ -90,6 +113,7 @@
 
         .table tr:hover {
             background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
         }
 
         /* Actions Buttons */
@@ -114,19 +138,21 @@
             padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            color: #3498db;
+            color: #8b7355; /* Warm, earthy brown */
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .pagination li a:hover {
             background-color: #f1f1f1;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .pagination .active a {
-            background-color: #3498db;
+            background-color: #8b7355; /* Warm, earthy brown */
             color: white;
-            border-color: #3498db;
+            border-color: #8b7355;
         }
     </style>
 

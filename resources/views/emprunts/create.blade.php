@@ -4,9 +4,9 @@
     <style>
         /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Georgia', serif;
+            background-color: #f5f5dc; /* Parchment-like background */
+            color: #3e2723; /* Dark brown for text */
             line-height: 1.6;
         }
 
@@ -14,17 +14,30 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
+            background-color: #fffaf0; /* Light, creamy background */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .title {
             text-align: center;
-            color: #2c3e50;
+            color: #8b7355; /* Warm, earthy brown */
             margin-bottom: 30px;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Form Styles */
@@ -36,7 +49,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #2c3e50;
+            color: #8b7355; /* Warm, earthy brown */
         }
 
         .form-group input,
@@ -52,7 +65,7 @@
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #3498db;
+            border-color: #8b7355; /* Warm, earthy brown */
             outline: none;
         }
 
@@ -63,16 +76,29 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background-color: #3498db;
+            background-color: #8b7355; /* Warm, earthy brown */
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: #2980b9;
+            background-color: #6d4c41; /* Darker brown */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
         }
     </style>
 

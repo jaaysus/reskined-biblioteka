@@ -6,7 +6,7 @@ use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EmpruntController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('livres', [LivreController::class, 'index'])->name('livres.index');
@@ -20,4 +20,4 @@ Route::resource('auteurs', AuteurController::class);
 
 Route::resource('emprunts', EmpruntController::class);
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
