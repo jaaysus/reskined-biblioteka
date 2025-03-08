@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LivreController;
 use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EmpruntController;
+use App\Http\Controllers\Auth\LoginController; 
+Auth::routes();
 
 Route::get('/', function () {
     return redirect()->route('login');

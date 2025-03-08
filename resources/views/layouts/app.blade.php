@@ -66,6 +66,27 @@
             color: #ffecb3; /* Lighter cream for hover */
         }
 
+        /* User Welcome Section */
+        .user-welcome {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #fffaf0; /* Light, creamy background */
+            border-bottom: 1px solid #8b7355; /* Matching the header color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-welcome h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #3e2723; /* Dark brown for text */
+        }
+
+        .user-welcome p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #6d4c41; /* Muted brown */
+        }
+
         /* Content Area */
         .content {
             padding: 2rem;
@@ -150,7 +171,6 @@
                     <li><a href="{{ route('login') }}">Se connecter</a></li>
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                 @else
-                    <li><a href="#">{{ Auth::user()->name }}</a></li>
                     <li>
                         <a href="{{ route('logout') }}" 
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
@@ -162,6 +182,13 @@
             </ul>
         </nav>
     </header>    
+
+    @auth
+        <div class="user-welcome">
+            <h2>Bienvenue, {{ Auth::user()->name }}!</h2>
+            <p>Nous sommes ravis de vous revoir.</p>
+        </div>
+    @endauth
 
     <div class="content">
         @yield('content')
