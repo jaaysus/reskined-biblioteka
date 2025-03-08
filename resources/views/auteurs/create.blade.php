@@ -54,39 +54,66 @@
 
         .form-group input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 14px;
-            background-color: #fff;
-            transition: border-color 0.3s ease;
+            background-color: #fff8e1; /* Soft cream for input background */
+            color: #3e2723; /* Dark brown for text */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus {
             border-color: #8b7355; /* Warm, earthy brown */
             outline: none;
+            box-shadow: 0 0 8px rgba(139, 115, 85, 0.3);
+            background-color: #fffaf0; /* Light cream for focus */
+        }
+
+        .form-group input::placeholder {
+            color: #a1887f; /* Muted brown for placeholder text */
+            opacity: 0.7;
+        }
+
+        .form-group .invalid-feedback {
+            color: #e74c3c; /* Red for error messages */
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .form-group .is-invalid {
+            border-color: #e74c3c; /* Red for invalid inputs */
         }
 
         /* Button Styles */
         .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
+            padding: 12px 30px;
+            border: 1px solid #8b7355; /* Warm, earthy brown */
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
+            background-color: transparent;
+            color: #8b7355; /* Warm, earthy brown */
         }
 
-        .btn-primary {
+        .btn:hover {
             background-color: #8b7355; /* Warm, earthy brown */
             color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #6d4c41; /* Darker brown */
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
         }
     </style>
 
@@ -97,15 +124,21 @@
             @csrf
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" class="form-control" required>
+                <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" value="{{ old('nom') }}" required>
+                @error('nom')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="prenom">Prénom</label>
-                <input type="text" name="prenom" id="prenom" class="form-control" required>
+                <input type="text" name="prenom" id="prenom" class="form-control @error('prenom') is-invalid @enderror" value="{{ old('prenom') }}" required>
+                @error('prenom')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn">Ajouter</button>
         </form>
     </div>
 @endsection

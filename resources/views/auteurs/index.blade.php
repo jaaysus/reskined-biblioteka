@@ -43,45 +43,45 @@
         /* Button Styles */
         .btn {
             padding: 10px 20px;
-            border: none;
+            border: 1px solid #8b7355; /* Warm, earthy brown */
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
+            background-color: transparent;
+            color: #8b7355; /* Warm, earthy brown */
         }
 
-        .btn-primary {
+        .btn:hover {
             background-color: #8b7355; /* Warm, earthy brown */
             color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #6d4c41; /* Darker brown */
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
+        .btn-primary {
+            border-color: #8b7355; /* Warm, earthy brown */
+        }
+
         .btn-warning {
+            border-color: #f39c12; /* Orange */
+            color: #f39c12; /* Orange */
+        }
+
+        .btn-warning:hover {
             background-color: #f39c12; /* Orange */
             color: white;
         }
 
-        .btn-warning:hover {
-            background-color: #e67e22; /* Darker orange */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         .btn-danger {
-            background-color: #e74c3c; /* Red */
-            color: white;
+            border-color: #e74c3c; /* Red */
+            color: #e74c3c; /* Red */
         }
 
         .btn-danger:hover {
-            background-color: #c0392b; /* Darker red */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #e74c3c; /* Red */
+            color: white;
         }
 
         /* List Styles */

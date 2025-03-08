@@ -73,36 +73,38 @@
 
         .btn {
             padding: 10px 20px;
-            border: none;
+            border: 1px solid #8b7355; /* Warm, earthy brown */
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
+            background-color: transparent;
+            color: #8b7355; /* Warm, earthy brown */
         }
 
-        .btn-primary {
+        .btn:hover {
             background-color: #8b7355; /* Warm, earthy brown */
             color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #6d4c41; /* Darker brown */
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Add Button Styles */
-        .add-button {
+        .add-button-container {
+            text-align: right;
             margin-bottom: 20px;
-            background-color: #6d4c41; /* Muted brown */
-            color: white;
+        }
+
+        .add-button {
+            background-color: transparent;
+            border: 1px solid #8b7355; /* Warm, earthy brown */
+            color: #8b7355; /* Warm, earthy brown */
         }
 
         .add-button:hover {
-            background-color: #8b7355; /* Lighter brown */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #8b7355; /* Warm, earthy brown */
+            color: white;
         }
 
         /* Table Styles */
@@ -144,46 +146,39 @@
         }
 
         .btn-warning {
+            border: 1px solid #f39c12; /* Orange */
+            color: #f39c12; /* Orange */
+        }
+
+        .btn-warning:hover {
             background-color: #f39c12; /* Orange */
             color: white;
         }
 
-        .btn-warning:hover {
-            background-color: #e67e22; /* Darker orange */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         .btn-danger {
-            background-color: #e74c3c; /* Red */
-            color: white;
+            border: 1px solid #e74c3c; /* Red */
+            color: #e74c3c; /* Red */
         }
 
         .btn-danger:hover {
-            background-color: #c0392b; /* Darker red */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #e74c3c; /* Red */
+            color: white;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .search-form {
                 flex-direction: column;
-            gap: 10px;
-            padding: 15px;
-            background-color: #fff8e1; /* Soft, creamy white */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+            }
 
-        .form-group {
-            width: 100%;
-        }
+            .form-group {
+                width: 100%;
+            }
 
-        .btn {
-            width: 100%;
-            margin-top: 10px;
+            .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
         }
     </style>
 
@@ -200,11 +195,15 @@
                 <label for="end_date">Date de fin</label>
                 <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Filtrer</button>
+            <button type="submit" class="btn">Filtrer</button>
         </form>
 
-        <a href="{{ route('emprunts.create') }}" class="btn btn-success add-button">Ajouter un emprunt</a>
+        <!-- Add Button -->
+        <div class="add-button-container">
+            <a href="{{ route('emprunts.create') }}" class="btn add-button">Ajouter un emprunt</a>
+        </div>
 
+        <!-- Table -->
         <table class="emprunts-table">
             <thead>
                 <tr>

@@ -17,7 +17,7 @@
 
         /* Header and Navigation */
         header {
-            background-color: #8b7355; /* Warm, earthy brown */
+            background-color: #6d4c41; /* Deep, rich brown for old money vibe */
             padding: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
@@ -36,6 +36,7 @@
 
         nav ul li {
             margin: 0 15px;
+            position: relative;
         }
 
         nav ul li a {
@@ -45,25 +46,62 @@
             padding: 0.5rem 1rem;
             transition: all 0.3s ease;
             position: relative;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
+        /* Hover Effect with Underline */
         nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: #fff8e1;
+            background-color: #d4af37; /* Gold accent for old money feel */
             bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease, background-color 0.3s ease;
         }
 
         nav ul li a:hover::after {
             width: 100%;
+            background-color: #ffecb3; /* Lighter gold on hover */
         }
 
         nav ul li a:hover {
             color: #ffecb3; /* Lighter cream for hover */
+        }
+
+        /* Dropdown Effect for Logout */
+        nav ul li form {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #8b7355; /* Warm brown for dropdown */
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        nav ul li:hover form {
+            display: block;
+        }
+
+        nav ul li form button {
+            background: none;
+            border: none;
+            color: #fff8e1;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li form button:hover {
+            color: #ffecb3;
         }
 
         /* User Welcome Section */
@@ -109,25 +147,6 @@
             }
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background-color: #6d4c41; /* Muted brown */
-            color: #fff8e1;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: #8d6e63; /* Lighter brown */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             nav ul {
@@ -138,24 +157,10 @@
             nav ul li {
                 margin: 10px 0;
             }
-        }
 
-        /* Book-themed Decorations */
-        .content::before {
-            content: '📚';
-            font-size: 2rem;
-            display: block;
-            text-align: center;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
+            nav ul li form {
+                left: 0;
+                transform: translateX(0);
             }
         }
     </style>
@@ -172,12 +177,12 @@
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                 @else
                     <li>
-                        <a href="{{ route('logout') }}" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
+                        <a href="#">Mon Compte</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Se déconnecter</button>
+                        </form>
                     </li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
                 @endguest
             </ul>
         </nav>
