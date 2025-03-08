@@ -18,16 +18,62 @@
         /* Header and Navigation */
         header {
             background-color: #6d4c41; /* Deep, rich brown for old money vibe */
-            padding: 1rem 0;
+            padding: 10rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
         }
 
+        /* Small Floating Papers Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .paper {
+            width: 20px;
+            height: 30px;
+            background-color: #fffaf0; /* Light, creamy background */
+            position: relative;
+            border-radius: 2px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .paper:nth-child(1) {
+            transform: rotate(-5deg);
+            animation-delay: 0s;
+        }
+
+        .paper:nth-child(2) {
+            transform: rotate(5deg);
+            animation-delay: 0.5s;
+        }
+
+        .paper:nth-child(3) {
+            transform: rotate(-3deg);
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Navigation Styles */
         nav ul {
             list-style: none;
-            margin: 0;
+            margin: 10;
             padding: 0;
             display: flex;
             justify-content: center;
@@ -104,67 +150,66 @@
             color: #ffecb3;
         }
 
-    /* User Welcome Section */
-    .user-welcome {
-        text-align: center;
-        padding: 1.5rem 0;
-        background-color: #fffaf0; /* Light, creamy background */
-        border-bottom: 1px solid #8b7355; /* Warm, earthy brown border */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .user-welcome::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -50%;
-        width: 200%;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(139, 115, 85, 0.1) 25%, transparent 50%, rgba(139, 115, 85, 0.1) 75%);
-        animation: shimmer 3s infinite linear;
-    }
-
-    @keyframes shimmer {
-        0% {
-            transform: translateX(-50%);
+        /* User Welcome Section */
+        .user-welcome {
+            text-align: center;
+            padding: 1.5rem 0;
+            background-color: #fffaf0; /* Light, creamy background */
+            border-bottom: 1px solid #8b7355; /* Warm, earthy brown border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        100% {
-            transform: translateX(50%);
+
+        .user-welcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(139, 115, 85, 0.1) 25%, transparent 50%, rgba(139, 115, 85, 0.1) 75%);
+            animation: shimmer 3s infinite linear;
         }
-    }
 
-    .user-welcome h2 {
-        margin: 0;
-        font-size: 1.75rem;
-        color: #3e2723; /* Dark brown for text */
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        animation: fadeInDown 1s ease-in-out;
-    }
-
-    .user-welcome p {
-        margin: 0.5rem 0 0;
-        font-size: 1.25rem;
-        color: #6d4c41; /* Muted brown */
-        font-style: italic;
-        animation: fadeInUp 1s ease-in-out;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(50%);
+            }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 
-   
+        .user-welcome h2 {
+            margin: 0;
+            font-size: 1.75rem;
+            color: #3e2723; /* Dark brown for text */
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .user-welcome p {
+            margin: 0.5rem 0 0;
+            font-size: 1.25rem;
+            color: #6d4c41; /* Muted brown */
+            font-style: italic;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Content Area */
         .content {
             padding: 2rem;
@@ -207,6 +252,14 @@
 </head>
 <body>
     <header>
+        <!-- Small Floating Papers Logo -->
+        <div class="logo">
+            <div class="paper"></div>
+            <div class="paper"></div>
+            <div class="paper"></div>
+        </div>
+
+        <!-- Navigation -->
         <nav>
             <ul>
                 <li><a href="{{ route('emprunts.index') }}">Emprunts</a></li>
@@ -226,7 +279,7 @@
                 @endguest
             </ul>
         </nav>
-    </header>    
+    </header>
 
     @auth
         <div class="user-welcome">
