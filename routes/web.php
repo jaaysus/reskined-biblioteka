@@ -5,7 +5,7 @@ use App\Http\Controllers\LivreController;
 use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EmpruntController;
 use App\Http\Controllers\Auth\LoginController; 
-// use App\Http\Controllers\LivreHistoryController;
+use App\Http\Controllers\LivreHistoryController;
 Auth::routes();
 
 Route::get('/', function () {
@@ -25,4 +25,4 @@ Route::resource('emprunts', EmpruntController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/livre-history', [LivreHistoryController::class, 'index'])->name('livre-history.index');
+Route::get('/livre-history', [LivreHistoryController::class, 'index'])->name('livre-history.index');

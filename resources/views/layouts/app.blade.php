@@ -70,7 +70,6 @@
             }
         }
 
-        /* Navigation Styles */
         nav ul {
             list-style: none;
             margin: 10;
@@ -86,7 +85,7 @@
         }
 
         nav ul li a {
-            color: #fff8e1; /* Soft, creamy white */
+            color: #fff8e1; 
             text-decoration: none;
             font-size: 1.1rem;
             padding: 0.5rem 1rem;
@@ -96,7 +95,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Hover Effect with Underline */
+       
         nav ul li a::after {
             content: '';
             position: absolute;
@@ -111,15 +110,15 @@
 
         nav ul li a:hover::after {
             width: 100%;
-            background-color: #ffecb3; /* Lighter gold on hover */
+            background-color: #ffecb3; 
         }
 
         nav ul li a:hover {
-            color: #ffecb3; /* Lighter cream for hover */
+            color: #ffecb3; 
         }
 
-        /* Dropdown Effect for Logout */
-        nav ul li form {
+        /* Dropdown Effect for Logout and History */
+        nav ul li .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
@@ -130,13 +129,26 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 0.5rem;
             z-index: 1000;
+            animation: slideDown 0.5s ease-in-out forwards;
         }
 
-        nav ul li:hover form {
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        nav ul li:hover .dropdown-content {
             display: block;
         }
 
-        nav ul li form button {
+        nav ul li .dropdown-content button,
+        nav ul li .dropdown-content a {
             background: none;
             border: none;
             color: #fff8e1;
@@ -144,9 +156,14 @@
             font-size: 1rem;
             padding: 0.5rem 1rem;
             transition: color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: left;
+            text-decoration: none;
         }
 
-        nav ul li form button:hover {
+        nav ul li .dropdown-content button:hover,
+        nav ul li .dropdown-content a:hover {
             color: #ffecb3;
         }
 
@@ -243,7 +260,7 @@
                 margin: 10px 0;
             }
 
-            nav ul li form {
+            nav ul li .dropdown-content {
                 left: 0;
                 transform: translateX(0);
             }
@@ -271,10 +288,13 @@
                 @else
                     <li>
                         <a href="#">Mon Compte</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit">Se déconnecter</button>
-                        </form>
+                        <div class="dropdown-content">
+                            <a href="{{ route('livre-history.index') }}">Historique</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit">Se déconnecter</button>
+                            </form>
+                        </div>
                     </li>
                 @endguest
             </ul>

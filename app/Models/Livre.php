@@ -16,4 +16,9 @@ class Livre extends Model
     {
         return $this->belongsTo(Auteur::class);
     }
+
+    public function histories()
+    {
+        return $this->hasMany(LivreHistory::class);
+    }
 }

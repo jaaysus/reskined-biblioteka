@@ -17,6 +17,7 @@ class LivreHistory extends Model
     /**
      * Get the book associated with this history entry.
      */
+
     public function livre()
     {
         return $this->belongsTo(Livre::class);

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Events\LivreHistoryEvent;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class LivreController extends Controller
 {
     /**
@@ -17,6 +19,7 @@ class LivreController extends Controller
     {
         $livres = Livre::with('auteur')->paginate(10);
         return view('livres.index', compact('livres'));
+
     }
 
     /**
@@ -42,9 +45,9 @@ class LivreController extends Controller
 
         $livre = Livre::create($request->all());
 
-    event(new LivreHistoryEvent($livre, 'created', $livre->getAttributes(), Auth::user()));
+        event(new LivreHistoryEvent($livre, 'created', $livre->getAttributes(), Auth::user()));
 
-    return redirect()->route('livres.index')->with('success', 'Livre ajouté avec succès!');
+        return redirect()->route('livres.index')->with('success', 'Livre ajouté avec succès!');
     }
 
     /**
