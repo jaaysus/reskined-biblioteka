@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Livre;
 use App\Models\Auteur;
 use Illuminate\Http\Request;
+use App\Events\LivreHistoryEvent;
+use Illuminate\Support\Facades\Auth;
 
 class LivreController extends Controller
 {
@@ -38,9 +40,11 @@ class LivreController extends Controller
             'auteur_id' => 'required|exists:auteurs,id',
         ]);
 
-        Livre::create($request->all());
+        $livre = Livre::create($request->all());
 
-        return redirect()->route('livres.index')->with('success', 'Livre ajouté avec succès!');
+    event(new LivreHistoryEvent($livre, 'created', $livre->getAttributes(), Auth::user()));
+
+    return redirect()->route('livres.index')->with('success', 'Livre ajouté avec succès!');
     }
 
     /**
@@ -72,8 +76,13 @@ class LivreController extends Controller
             'auteur_id' => 'required|exists:auteurs,id',
         ]);
 
+        $oldAttributes = $livre->getAttributes(); // Store old attributes
         $livre->update($request->all());
-
+    
+        $changes = array_diff($livre->getAttributes(), $oldAttributes); // Get the changed fields
+    
+        event(new LivreHistoryEvent($livre, 'updated', $changes, Auth::user()));
+    
         return redirect()->route('livres.index')->with('success', 'Livre mis à jour avec succès!');
     }
 
@@ -82,7 +91,10 @@ class LivreController extends Controller
      */
     public function destroy(Livre $livre)
     {
+        event(new LivreHistoryEvent($livre, 'deleted', $livre->getAttributes(), Auth::user()));
+
         $livre->delete();
-        return redirect()->route('livres.index')->with('success', 'Livre supprimé avec succès!');
+    
+        return redirect()->route('livres.index')->with('success', 'Livre supprimé avec succès!');    
     }
 }
