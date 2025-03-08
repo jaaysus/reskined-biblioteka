@@ -104,27 +104,67 @@
             color: #ffecb3;
         }
 
-        /* User Welcome Section */
-        .user-welcome {
-            text-align: center;
-            padding: 1rem 0;
-            background-color: #fffaf0; /* Light, creamy background */
-            border-bottom: 1px solid #8b7355; /* Matching the header color */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    /* User Welcome Section */
+    .user-welcome {
+        text-align: center;
+        padding: 1.5rem 0;
+        background-color: #fffaf0; /* Light, creamy background */
+        border-bottom: 1px solid #8b7355; /* Warm, earthy brown border */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
 
-        .user-welcome h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #3e2723; /* Dark brown for text */
-        }
+    .user-welcome::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(139, 115, 85, 0.1) 25%, transparent 50%, rgba(139, 115, 85, 0.1) 75%);
+        animation: shimmer 3s infinite linear;
+    }
 
-        .user-welcome p {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #6d4c41; /* Muted brown */
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-50%);
         }
+        100% {
+            transform: translateX(50%);
+        }
+    }
 
+    .user-welcome h2 {
+        margin: 0;
+        font-size: 1.75rem;
+        color: #3e2723; /* Dark brown for text */
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    .user-welcome p {
+        margin: 0.5rem 0 0;
+        font-size: 1.25rem;
+        color: #6d4c41; /* Muted brown */
+        font-style: italic;
+        animation: fadeInUp 1s ease-in-out;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+   
         /* Content Area */
         .content {
             padding: 2rem;

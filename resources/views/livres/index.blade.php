@@ -31,7 +31,7 @@
             }
         }
 
-        h1 {
+        .title {
             text-align: center;
             color: #8b7355; /* Warm, earthy brown */
             margin-bottom: 30px;
@@ -42,7 +42,7 @@
 
         /* Button Styles */
         .btn {
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 1px solid #8b7355; /* Warm, earthy brown */
             border-radius: 4px;
             cursor: pointer;
@@ -84,111 +84,86 @@
             color: white;
         }
 
-        /* Table Styles */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
+        /* List Styles */
+        .livres-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .table th, .table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .table th {
-            background-color: #8b7355; /* Warm, earthy brown */
-            color: white;
-            font-weight: 600;
-        }
-
-        .table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .table tr:hover {
-            background-color: #f1f1f1;
+        .livres-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
             transition: background-color 0.3s ease;
         }
 
-        /* Actions Buttons */
-        .actions {
+        .livres-list li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .livres-list li:last-child {
+            border-bottom: none;
+        }
+
+        .livres-list .details {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Equal width for all spans */
+        .livres-list .details span {
+            flex: 1; /* Equal width for all spans */
+            margin-right: 20px;
+            text-align: left; /* Align text to the left */
+        }
+
+        .livres-list .actions {
             display: flex;
             gap: 10px;
-        }
-
-        /* Pagination Styles */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .pagination li {
-            list-style: none;
-            margin: 0 5px;
-        }
-
-        .pagination li a {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            color: #8b7355; /* Warm, earthy brown */
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .pagination li a:hover {
-            background-color: #f1f1f1;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .pagination .active a {
-            background-color: #8b7355; /* Warm, earthy brown */
-            color: white;
-            border-color: #8b7355;
         }
     </style>
 
     <div class="container">
-        <h1>Liste des livres</h1>
-        <a href="{{ route('livres.create') }}" class="btn btn-primary mb-3">Ajouter un nouveau livre</a>
+        <h1 class="title">Liste des Livres</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Année de publication</th>
-                    <th>Nombre de pages</th>
-                    <th>Auteur</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($livres as $livre)
-                    <tr>
-                        <td>{{ $livre->titre }}</td>
-                        <td>{{ $livre->annee_publication }}</td>
-                        <td>{{ $livre->nombre_pages }}</td>
-                        <td>{{ $livre->auteur ? $livre->auteur->nom : 'Auteur non défini' }}</td>
-                        <td class="actions">
-                            <a href="{{ route('livres.edit', $livre) }}" class="btn btn-warning btn-sm">Modifier</a>
-                            <form action="{{ route('livres.destroy', $livre) }}" method="POST" class="d-inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <a href="{{ route('livres.create') }}" class="btn btn-primary">Ajouter un Livre</a>
+
+        <ul class="livres-list">
+            <!-- Header Row -->
+            <li>
+                <div class="details">
+                    <span><strong>Titre</strong></span>
+                    <span><strong>Année de publication</strong></span>
+                    <span><strong>Nombre de pages</strong></span>
+                    <span><strong>Auteur</strong></span>
+                    <span><strong>Actions</strong></span>
+                </div>
+            </li>
+
+            <!-- Book Rows -->
+            @foreach ($livres as $livre)
+                <li>
+                    <div class="details">
+                        <span>{{ $livre->titre }}</span>
+                        <span>{{ $livre->annee_publication }}</span>
+                        <span>{{ $livre->nombre_pages }}</span>
+                        <span>{{ $livre->auteur ? $livre->auteur->nom : 'Auteur non défini' }}</span>
+                    </div>
+                    <div class="actions">
+                        <a href="{{ route('livres.edit', $livre) }}" class="btn btn-warning">Modifier</a>
+                        <form action="{{ route('livres.destroy', $livre) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
 
         {{ $livres->links() }}
     </div>
