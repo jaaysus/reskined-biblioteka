@@ -2,173 +2,178 @@
 
 @section('content')
     <style>
-        /* General Styles */
         body {
-            font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Parchment-like background */
-            color: #3e2723; /* Dark brown for text */
-            line-height: 1.6;
-            background-image: url('https://www.transparenttextures.com/patterns/paper.png'); /* Subtle paper texture */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e7f0f8; /* Light blue for background */
+            color: #333; /* Dark text color */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            background-color: #fffaf0; /* Light, creamy background */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.6s ease-out;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideIn {
             from {
+                transform: translateY(50px);
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        .card-body {
-            padding: 30px;
+        .card-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2C3E50;
         }
 
-        /* Form Styles */
         .form-group label {
-            font-weight: 500;
-            color: #8b7355; /* Warm, earthy brown */
+            font-weight: 600;
+            color: #34495E;
             margin-bottom: 8px;
             display: block;
         }
 
         .form-control {
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            padding: 12px;
+            padding: 15px;
             font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            background-color: #fff8e1; /* Soft cream for input background */
-            color: #3e2723; /* Dark brown for text */
+            border-radius: 10px;
+            border: 1px solid #d1d8e3;
             width: 100%;
+            margin-bottom: 20px;
+            background-color: #f4f7fb;
+            color: #2C3E50;
         }
 
         .form-control:focus {
-            border-color: #8b7355; /* Warm, earthy brown */
+            border-color: #2980B9;
             outline: none;
-            box-shadow: 0 0 8px rgba(139, 115, 85, 0.3);
-            background-color: #fffaf0; /* Light cream for focus */
+            box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
         }
 
-        .form-control::placeholder {
-            color: #a1887f; /* Muted brown for placeholder text */
-            opacity: 0.7;
-        }
-
-        .invalid-feedback {
-            color: #e74c3c; /* Red for error messages */
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-
-        /* Button Styles */
-        .btn-primary {
-            background-color: #8b7355; /* Warm, earthy brown */
-            border: none;
-            border-radius: 8px;
-            padding: 12px 30px;
-            font-size: 1rem;
+        .form-check-label {
             font-weight: 500;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            color: #fff8e1; /* Soft cream for text */
+            color: #34495E;
+            cursor: pointer;
+        }
+
+        .form-check-input {
+            margin-top: 2px;
+        }
+
+        .btn-primary {
+            background-color: #2980B9;
+            color: white;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            border: none;
+            width: 100%;
+            transition: 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: #6d4c41; /* Darker brown */
+            background-color: #3498db;
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.2);
         }
 
-        /* Input Group Animation */
-        .form-group {
-            position: relative;
-            margin-bottom: 20px;
+        .btn-link {
+            color: #2980B9;
+            font-weight: 500;
+            margin-left: 0;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+            transition: 0.3s;
         }
 
-        .form-group input {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .btn-link:hover {
+            color: #3498db;
+            text-decoration: underline;
         }
     </style>
 
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
+        <div class="card">
+            <div class="card-header">
+                {{ __('S\'inscrire') }}
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
 
-                            <!-- Name Input -->
-                            <div class="form-group">
-                                <label for="name">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter your name">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <!-- Email Input -->
-                            <div class="form-group">
-                                <label for="email">{{ __('Email Address') }}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <!-- Password Input -->
-                            <div class="form-group">
-                                <label for="password">{{ __('Password') }}</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter your password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <!-- Confirm Password Input -->
-                            <div class="form-group">
-                                <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm your password">
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="name">{{ __('Nom') }}</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" 
+                               name="name" value="{{ old('name') }}" required autocomplete="name" autofocus 
+                               placeholder="Entrez votre nom">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="email">{{ __('Adresse e-mail') }}</label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
+                               name="email" value="{{ old('email') }}" required autocomplete="email" 
+                               placeholder="Entrez votre e-mail">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">{{ __('Mot de passe') }}</label>
+                        <input id="password" type="password" 
+                               class="form-control @error('password') is-invalid @enderror" name="password" 
+                               required autocomplete="new-password" placeholder="Entrez votre mot de passe">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password-confirm">{{ __('Confirmer le mot de passe') }}</label>
+                        <input id="password-confirm" type="password" class="form-control" 
+                               name="password_confirmation" required autocomplete="new-password" 
+                               placeholder="Confirmer votre mot de passe">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('S\'inscrire') }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

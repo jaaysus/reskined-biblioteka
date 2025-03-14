@@ -5,7 +5,7 @@
         /* General Styles */
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Parchment-like background */
+            background-color: #f0f4f8; /* Light bluish background */
             color: #3e2723; /* Dark brown for text */
             line-height: 1.6;
         }
@@ -14,7 +14,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fffaf0; /* Light, creamy background */
+            background-color: #ffffff; /* Clean white background */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
@@ -31,13 +31,18 @@
             }
         }
 
-        .title {
+        h1 {
             text-align: center;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color for title */
             margin-bottom: 30px;
             font-size: 2.5rem;
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset box-sizing to ensure inputs are properly aligned */
+        * {
+            box-sizing: border-box;
         }
 
         /* Form Styles */
@@ -49,7 +54,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color for label text */
         }
 
         .form-group input,
@@ -59,17 +64,17 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
-            background-color: #fff8e1; /* Soft cream for input background */
+            background-color: #fff; /* White background for input */
             color: #3e2723; /* Dark brown for text */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #8b7355; /* Warm, earthy brown */
+            border-color: #1e3a8a; /* Bluish color for focus */
             outline: none;
-            box-shadow: 0 0 8px rgba(139, 115, 85, 0.3);
-            background-color: #fffaf0; /* Light cream for focus */
+            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
+            background-color: #fff; /* White background on focus */
         }
 
         .form-group input::placeholder,
@@ -78,21 +83,31 @@
             opacity: 0.7;
         }
 
+        .form-group .invalid-feedback {
+            color: #e74c3c; /* Red for error messages */
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .form-group .is-invalid {
+            border-color: #e74c3c; /* Red for invalid inputs */
+        }
+
         /* Button Styles */
         .btn {
             padding: 12px 30px;
-            border: 1px solid #8b7355; /* Warm, earthy brown */
+            border: 1px solid #1e3a8a; /* Bluish color */
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
             background-color: transparent;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color */
         }
 
         .btn:hover {
-            background-color: #8b7355; /* Warm, earthy brown */
+            background-color: #1e3a8a; /* Bluish color */
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -104,35 +119,45 @@
                 padding: 15px;
             }
 
-            .title {
+            h1 {
                 font-size: 2rem;
             }
         }
     </style>
 
     <div class="container">
-        <h1 class="title">Modifier un Emprunt</h1>
+        <h1>Modifier un Emprunt</h1>
 
         <form action="{{ route('emprunts.update', $emprunt->id) }}" method="POST">
             @csrf
             @method('PUT')
+
             <div class="form-group">
                 <label for="livre_id">Livre</label>
-                <select name="livre_id" id="livre_id">
+                <select name="livre_id" id="livre_id" class="form-control @error('livre_id') is-invalid @enderror">
                     @foreach($livres as $livre)
                         <option value="{{ $livre->id }}" {{ $livre->id == $emprunt->livre_id ? 'selected' : '' }}>{{ $livre->titre }}</option>
                     @endforeach
                 </select>
+                @error('livre_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="date_emprunt">Date d'emprunt</label>
-                <input type="date" name="date_emprunt" id="date_emprunt" value="{{ $emprunt->date_emprunt }}">
+                <input type="date" name="date_emprunt" id="date_emprunt" value="{{ $emprunt->date_emprunt }}" class="form-control @error('date_emprunt') is-invalid @enderror">
+                @error('date_emprunt')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="date_retour">Date de retour</label>
-                <input type="date" name="date_retour" id="date_retour" value="{{ $emprunt->date_retour }}">
+                <input type="date" name="date_retour" id="date_retour" value="{{ $emprunt->date_retour }}" class="form-control @error('date_retour') is-invalid @enderror">
+                @error('date_retour')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn">Mettre à jour</button>

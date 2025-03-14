@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Auteur;
 
@@ -13,7 +12,8 @@ class AuteurSeeder extends Seeder
      */
     public function run(): void
     {
-        Auteur::create(['nom' => 'Hugo', 'prenom' => 'Victor']);
-        Auteur::create(['nom' => 'Camus', 'prenom' => 'Albert']);
+        Auteur::create(['nom' => 'Yoo', 'prenom' => 'Seong Gyeong']);
+        Auteur::create(['nom' => 'Lee', 'prenom' => 'Jung Ho']);
+        Auteur::create(['nom' => 'Jin', 'prenom' => 'Kang Hoon']);
     }
 }

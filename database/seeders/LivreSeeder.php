@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Livre;
 
@@ -13,7 +12,8 @@ class LivreSeeder extends Seeder
      */
     public function run(): void
     {
-        Livre::create(['titre' => 'Les Misérables', 'annee_publication' => 1862, 'nombre_pages' => 1463, 'auteur_id' => 1]);
-        Livre::create(['titre' => 'L’Étranger', 'annee_publication' => 1942, 'nombre_pages' => 123, 'auteur_id' => 2]);
+        Livre::create(['titre' => 'Tower of God', 'annee_publication' => 2010, 'nombre_pages' => 400, 'auteur_id' => 1]);
+        Livre::create(['titre' => 'The God of High School', 'annee_publication' => 2011, 'nombre_pages' => 350, 'auteur_id' => 2]);
+        Livre::create(['titre' => 'Noblesse', 'annee_publication' => 2007, 'nombre_pages' => 500, 'auteur_id' => 3]);
     }
 }

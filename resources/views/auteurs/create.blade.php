@@ -5,7 +5,7 @@
         /* General Styles */
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Parchment-like background */
+            background-color: #f0f4f8; /* Light bluish background */
             color: #3e2723; /* Dark brown for text */
             line-height: 1.6;
         }
@@ -14,7 +14,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fffaf0; /* Light, creamy background */
+            background-color: #ffffff; /* Clean white background */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
@@ -31,13 +31,18 @@
             }
         }
 
-        .title {
+        h1 {
             text-align: center;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color for title */
             margin-bottom: 30px;
             font-size: 2.5rem;
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset box-sizing to ensure inputs are properly aligned */
+        * {
+            box-sizing: border-box;
         }
 
         /* Form Styles */
@@ -49,28 +54,31 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color for label text */
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
-            background-color: #fff8e1; /* Soft cream for input background */
+            background-color: #fff; /* White background for input */
             color: #3e2723; /* Dark brown for text */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .form-group input:focus {
-            border-color: #8b7355; /* Warm, earthy brown */
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #1e3a8a; /* Bluish color for focus */
             outline: none;
-            box-shadow: 0 0 8px rgba(139, 115, 85, 0.3);
-            background-color: #fffaf0; /* Light cream for focus */
+            box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);
+            background-color: #fff; /* White background on focus */
         }
 
-        .form-group input::placeholder {
+        .form-group input::placeholder,
+        .form-group select::placeholder {
             color: #a1887f; /* Muted brown for placeholder text */
             opacity: 0.7;
         }
@@ -88,18 +96,18 @@
         /* Button Styles */
         .btn {
             padding: 12px 30px;
-            border: 1px solid #8b7355; /* Warm, earthy brown */
+            border: 1px solid #1e3a8a; /* Bluish color */
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
             background-color: transparent;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Bluish color */
         }
 
         .btn:hover {
-            background-color: #8b7355; /* Warm, earthy brown */
+            background-color: #1e3a8a; /* Bluish color */
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -111,17 +119,18 @@
                 padding: 15px;
             }
 
-            .title {
+            h1 {
                 font-size: 2rem;
             }
         }
     </style>
 
     <div class="container">
-        <h1 class="title">Ajouter un Auteur</h1>
+        <h1>Ajouter un nouvel auteur</h1>
 
         <form action="{{ route('auteurs.store') }}" method="POST">
             @csrf
+
             <div class="form-group">
                 <label for="nom">Nom</label>
                 <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" value="{{ old('nom') }}" required>

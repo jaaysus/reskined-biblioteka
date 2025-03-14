@@ -5,8 +5,8 @@
         /* General Styles */
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Parchment-like background */
-            color: #3e2723; /* Dark brown for text */
+            background-color: #e3f2fd; /* Light blue background */
+            color: #1e3a8a; /* Dark blue for text */
             line-height: 1.6;
         }
 
@@ -14,10 +14,11 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fffaf0; /* Light, creamy background */
+            background-color: #fff; /* White background for content */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
+            position: relative;
         }
 
         @keyframes fadeIn {
@@ -33,7 +34,7 @@
 
         .title {
             text-align: center;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Dark blue for title */
             margin-bottom: 30px;
             font-size: 2.5rem;
             font-weight: 600;
@@ -43,34 +44,34 @@
         /* Button Styles */
         .btn {
             padding: 10px 20px;
-            border: 1px solid #8b7355; /* Warm, earthy brown */
+            border: 1px solid #1e3a8a; /* Dark blue */
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
             background-color: transparent;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e3a8a; /* Dark blue */
         }
 
         .btn:hover {
-            background-color: #8b7355; /* Warm, earthy brown */
+            background-color: #1e3a8a; /* Dark blue */
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary {
-            border-color: #8b7355; /* Warm, earthy brown */
+            border-color: #1e3a8a; /* Dark blue */
         }
 
         .btn-warning {
-            border-color: #f39c12; /* Orange */
-            color: #f39c12; /* Orange */
+            border-color: #ff9800; /* Orange */
+            color: #ff9800; /* Orange */
         }
 
         .btn-warning:hover {
-            background-color: #f39c12; /* Orange */
+            background-color: #ff9800; /* Orange */
             color: white;
         }
 
@@ -111,12 +112,46 @@
             display: flex;
             gap: 10px;
         }
+
+        /* Floating "+" Button */
+        .add-button {
+            text-decoration: none; /* Remove underline/dash */
+            color: white;
+            position: fixed; /* Fix the button to the screen */
+            bottom: 30px; /* Distance from the bottom of the screen */
+            left: 50%;
+            transform: translateX(-50%); /* Center the button horizontally */
+            background-color: #1e3a8a; /* Dark blue */
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000; /* Make sure it's on top of other content */
+        }
+
+        .add-button:hover {
+            background-color: #ff9800; /* Change color on hover */
+        }
+
+        .add-button-container:hover .add-button {
+            opacity: 1;
+        }
     </style>
 
-    <div class="container">
+    <div class="container add-button-container">
         <h1 class="title">Liste des Auteurs</h1>
 
-        <a href="{{ route('auteurs.create') }}" class="btn btn-primary">Ajouter un Auteur</a>
+        <!-- Hover effect to show the "+" button below the title -->
+        <div class="add-button">
+            <a href="{{ route('auteurs.create') }}" style="color: white;">+</a>
+        </div>
 
         <ul class="auteurs-list">
             @foreach ($auteurs as $auteur)

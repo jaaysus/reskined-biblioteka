@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Tableau de bord') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <p>Bonjour, {{ Auth::user()->name }} ! Vous êtes maintenant connecté avec succès et prêt à <a href="{{ route('livres.index') }}" class="btn-link">explorer les livres</a>.</p>
                 </div>
             </div>
         </div>

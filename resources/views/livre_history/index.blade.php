@@ -5,8 +5,8 @@
         /* General Styles */
         body {
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Parchment-like background */
-            color: #3e2723; /* Dark brown for text */
+            background-color: #e3f2fd; /* Light blue background */
+            color: #0d47a1; /* Dark blue for text */
             line-height: 1.6;
         }
 
@@ -14,7 +14,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fffaf0; /* Light, creamy background */
+            background-color: #ffffff; /* White background for the content */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
@@ -33,85 +33,78 @@
 
         h1 {
             text-align: center;
-            color: #8b7355; /* Warm, earthy brown */
+            color: #1e88e5; /* Bright blue for header */
             margin-bottom: 30px;
             font-size: 2.5rem;
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* List Styles */
-        .history-list {
+        /* Timeline Styles */
+        .timeline {
             list-style: none;
             padding: 0;
+            position: relative;
+            margin-left: 20px;
         }
 
-        .history-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.3s ease;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #1e88e5; /* Blue timeline line */
         }
 
-        .history-list li:hover {
-            background-color: #f1f1f1;
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 60px;
         }
 
-        .history-list li:last-child {
-            border-bottom: none;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #1e88e5; /* Circle color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .history-list .details {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .timeline-item .content {
+            background-color: #e3f2fd; /* Light blue content background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Equal width for all spans */
-        .history-list .details span {
-            flex: 1; /* Equal width for all spans */
-            margin-right: 20px;
-            text-align: left; /* Align text to the left */
+        .timeline-item .content span {
+            display: block;
+            margin-bottom: 10px;
         }
 
-        .history-list .actions {
-            display: flex;
-            gap: 10px;
+        .timeline-item .content .timestamp {
+            font-size: 0.9rem;
+            color: #1565c0; /* Muted dark blue for timestamp */
         }
-
-        .history-list .details span {
-            flex: 1; /* Equal width for all spans */
-            margin-right: 20px;
-            text-align: left; /* Align text to the left */
-        }
-
-
     </style>
 
     <div class="container">
         <h1>Book History</h1>
 
-
-        <ul class="history-list">
-            <li class="header">
-                <div class="details">
-                    <span>nom de livre</span>
-                    <span>Action</span>
-                    <span>Utilisateur</span>
-                    <span>faire a </span>
-                </div>
-            </li>
-
+        <ul class="timeline">
             @foreach($histories as $history)
-                <li>
-                    <div class="details">
-                        <span>{{ $history->livre->titre ?? 'N/A' }}</span>
-                        <span>{{ $history->action }}</span>
-                        <span>{{ $history->user ? $history->user->name : 'N/A' }}</span>
-                        <span>{{ $history->created_at->format('Y-m-d H:i:s') }}</span>
+                <li class="timeline-item">
+                    <div class="content">
+                        <span><strong>Nom de livre:</strong> {{ $history->livre->titre ?? 'N/A' }}</span>
+                        <span><strong>Action:</strong> {{ $history->action }}</span>
+                        <span><strong>Utilisateur:</strong> {{ $history->user ? $history->user->name : 'N/A' }}</span>
+                        <span class="timestamp"><strong>Faire à:</strong> {{ $history->created_at->format('Y-m-d H:i:s') }}</span>
                     </div>
                 </li>
             @endforeach
